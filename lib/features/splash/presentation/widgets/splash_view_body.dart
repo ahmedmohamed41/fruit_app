@@ -22,7 +22,10 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   Future<Object?> navigator() {
     return Future.delayed(Duration(seconds: 3), () {
       if (mounted) {
-        return Navigator.pushNamed(context, RoutesManager.onBoarding);
+        return Navigator.pushReplacementNamed(
+          context,
+          RoutesManager.onBoarding,
+        );
       } else {
         return null;
       }
@@ -33,11 +36,10 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
       children: [
-        Row(children: [SvgPicture.asset(AssetsManager.spashLogo1)]),
-        SvgPicture.asset(AssetsManager.spashLogo2),
-        SvgPicture.asset(AssetsManager.spashLogo3),
+        Row(children: [SvgPicture.asset(AssetsManager.splashLogo1)]),
+        SvgPicture.asset(AssetsManager.splashLogo2),
+        SvgPicture.asset(AssetsManager.splashLogo3),
       ],
     );
   }
