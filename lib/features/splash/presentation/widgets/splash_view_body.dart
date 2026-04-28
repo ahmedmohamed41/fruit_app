@@ -1,5 +1,7 @@
 import 'package:e_commerce_app/core/resources/assets_manager.dart';
+import 'package:e_commerce_app/core/resources/constants.dart';
 import 'package:e_commerce_app/core/routes_manager/routes_manager.dart';
+import 'package:e_commerce_app/core/services/shared_preferences_singleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -19,13 +21,18 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     navigator();
   }
 
-  Future<Object?> navigator() {
+  Future<Object?> navigator() async {
+    bool isOnBoardingViewSeen = await Prefs.getBoolean(kIsOnboardingViewSeen);
     return Future.delayed(Duration(seconds: 3), () {
       if (mounted) {
-        return Navigator.pushReplacementNamed(
-          context,
-          RoutesManager.onBoarding,
-        );
+        if (isOnBoardingViewSeen) {
+          return Navigator.pushReplacementNamed(context, RoutesManager.login);
+        } else {
+          return Navigator.pushReplacementNamed(
+            context,
+            RoutesManager.onBoarding,
+          );
+        }
       } else {
         return null;
       }

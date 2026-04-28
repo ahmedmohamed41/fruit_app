@@ -1,7 +1,10 @@
 import 'package:e_commerce_app/core/routes_manager/routes_manager.dart';
+import 'package:e_commerce_app/core/services/shared_preferences_singleton.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.init();
   runApp(FruitApp());
 }
 

@@ -1,6 +1,8 @@
 import 'package:e_commerce_app/core/resources/assets_manager.dart';
 import 'package:e_commerce_app/core/resources/colors_manager.dart';
+import 'package:e_commerce_app/core/resources/constants.dart';
 import 'package:e_commerce_app/core/routes_manager/routes_manager.dart';
+import 'package:e_commerce_app/core/services/shared_preferences_singleton.dart';
 import 'package:e_commerce_app/core/widgets/custom_elevated_button.dart';
 import 'package:e_commerce_app/core/widgets/custom_text.dart';
 import 'package:e_commerce_app/features/on_boarding/models/onboarding_model.dart';
@@ -98,6 +100,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               right: 20,
               child: TextButton(
                 onPressed: () {
+                  Prefs.setBoolean(kIsOnboardingViewSeen, true);
                   Navigator.pushReplacementNamed(context, RoutesManager.login);
                 },
                 child: CustomText(text: 'تخط', color: ColorsManager.grayScale),
@@ -125,6 +128,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     title: 'ابدأ الآن',
                     isEnabled: true,
                     onPressed: () {
+                      Prefs.setBoolean(kIsOnboardingViewSeen, true);
                       Navigator.pushReplacementNamed(
                         context,
                         RoutesManager.login,
